@@ -10,6 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TTSSApi.Web.Abstraction.Clients;
+using TTSSApi.Web.Abstraction.Providers;
+using TTSSApi.Web.Abstraction.Services;
+using TTSSApi.Web.Clients;
+using TTSSApi.Web.Providers;
+using TTSSApi.Web.Services;
 
 namespace TTSSApi
 {
@@ -26,6 +32,9 @@ namespace TTSSApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IStopClient, StopClient>();
+            services.AddSingleton<IStopsProvider, StopsProvider>();
+            services.AddScoped<IStopService, StopService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
